@@ -16,3 +16,9 @@ sleep 10
 for l in $(curl -s $AMLIGHT/api/kytos/topology/v3/links | jq -r '.links[].id'); do curl -H 'Content-type: application/json' -X POST $AMLIGHT/api/kytos/topology/v3/links/$l/enable; done
 for l in $(curl -s $SAX/api/kytos/topology/v3/links | jq -r '.links[].id'); do curl -H 'Content-type: application/json' -X POST $SAX/api/kytos/topology/v3/links/$l/enable; done
 for l in $(curl -s $TENET/api/kytos/topology/v3/links | jq -r '.links[].id'); do curl -H 'Content-type: application/json' -X POST $TENET/api/kytos/topology/v3/links/$l/enable; done
+
+# Amlight network operator role
+curl -H 'Content-type: application/json' -X POST $AMLIGHT/api/kytos/topology/v3/interfaces/aa:00:00:00:00:00:00:01:40/metadata -d '{"sdx_nni":  "sax.net/sax_sw1:40"}'
+
+# SAX network operator role
+curl -H 'Content-type: application/json' -X POST $AMLIGHT/api/kytos/topology/v3/interfaces/dd:00:00:00:00:00:00:04:40/metadata -d '{"sdx_nni":  "amlight.net/Ampath1:40"}'
