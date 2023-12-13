@@ -21,4 +21,8 @@ for l in $(curl -s $TENET/api/kytos/topology/v3/links | jq -r '.links[].id'); do
 curl -H 'Content-type: application/json' -X POST $AMLIGHT/api/kytos/topology/v3/interfaces/aa:00:00:00:00:00:00:01:40/metadata -d '{"sdx_nni":  "sax.net/sax_sw1:40"}'
 
 # SAX network operator role
-curl -H 'Content-type: application/json' -X POST $AMLIGHT/api/kytos/topology/v3/interfaces/dd:00:00:00:00:00:00:04:40/metadata -d '{"sdx_nni":  "amlight.net/Ampath1:40"}'
+curl -H 'Content-type: application/json' -X POST $SAX/api/kytos/topology/v3/interfaces/dd:00:00:00:00:00:00:04:40/metadata -d '{"sdx_nni":  "amlight.net/Ampath1:40"}'
+curl -H 'Content-type: application/json' -X POST $SAX/api/kytos/topology/v3/interfaces/dd:00:00:00:00:00:00:04:41/metadata -d '{"sdx_nni":  "tenet.net/tenet_sw1:41"}'
+
+# TENET operator
+curl -H 'Content-type: application/json' -X POST $TENET/api/kytos/topology/v3/interfaces/cc:00:00:00:00:00:00:06:41/metadata -d '{"sdx_nni":  "sax.net/sax_sw1:41"}'
